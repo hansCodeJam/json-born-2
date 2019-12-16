@@ -1,11 +1,13 @@
 const fs = require('fs')
 
-const index = process.argv(2)
+const index = process.argv.slice(2)
 
-fs.read((error, user)=>{
+fs.readFile('./users.json',(error,user)=>{
 
-    console.log(JSON.parse(error, index))
-}
+    console.log(JSON.parse( user))
+})
+
+// console.log(index)
 
 
 
