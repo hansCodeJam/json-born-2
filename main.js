@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-let index = process.argv[4]
+// let index = process.argv[4]
 
 // fs.readFile('./users.json',(error,user)=>{
 
@@ -38,7 +38,7 @@ const getUsers = () => {
     })
 }
 
-getUsers()
+// getUsers()
 
 const getUser = (i) => {
     fs.readFile('users.json', function(err, data){
@@ -49,7 +49,7 @@ const getUser = (i) => {
             console.log(users[i]);
 }})}
 
-console.log(getUser(2))
+// console.log(getUser(2))
 
 const getFriends = (i) => {
     fs.readFile('users.json', function(err, data){
@@ -61,7 +61,7 @@ const getFriends = (i) => {
         }})
 }
 
-getFriends(1)
+// getFriends(1)
 
 const postUser = (name, age, eyeColor) => {
     fs.readFile('users.json', function(err, data){
@@ -86,7 +86,7 @@ const postUser = (name, age, eyeColor) => {
     console.log(getUsers());
 }
 
-postUser("Alice Um", "18", "green")
+// postUser("Alice Um", "18", "green")
 
 const postNewFriend = (index, name) => {
     fs.readFile('users.json', function(err, data){
@@ -109,7 +109,7 @@ const postNewFriend = (index, name) => {
     })   
 }
 
-postNewFriend(10, "Mad Hatter")
+// postNewFriend(10, "Mad Hatter")
 
 
 const deleted = (i) => {
@@ -118,8 +118,16 @@ const deleted = (i) => {
             console.log(err);
         } else {
             let users = [...JSON.parse(data)];
-            let item = users.indexOf(i)
-            console.log(users.splice(item,1));
-}})}
+            let item = users[i];
+            const newData = [];
+            newData.push(...users.slice(0,i),...users.slice(i+1));
+            console.log(newData);
+            const data3 = JSON.stringify(newData, null, 2);
+            fs.writeFile('users.json', data3, function(){
+})
+        }
+    })
+}
 
 deleted(2)
+
