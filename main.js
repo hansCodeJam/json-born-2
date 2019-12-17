@@ -49,7 +49,7 @@ const getUser = (i) => {
             console.log(users[i]);
 }})}
 
-getUser(2)
+console.log(getUser(2))
 
 const getFriends = (i) => {
     fs.readFile('users.json', function(err, data){
@@ -110,3 +110,16 @@ const postNewFriend = (index, name) => {
 }
 
 postNewFriend(10, "Mad Hatter")
+
+
+const deleted = (i) => {
+    fs.readFile('users.json', function(err, data){
+        if (err){
+            console.log(err);
+        } else {
+            let users = [...JSON.parse(data)];
+            let item = users.indexOf(i)
+            console.log(users.splice(item,1));
+}})}
+
+deleted(2)
